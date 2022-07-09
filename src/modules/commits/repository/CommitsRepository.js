@@ -1,11 +1,11 @@
 import Client from '../../../system/repository/clients/AxiosClient';
 
+
 const actions = {
-    getProfile(idProfile) {
+    getCommits(idProfile, idRepo, idBranch) {
         return Client
-            .get(`users/${idProfile}`)
+            .get(`/repos/${idProfile}/${idRepo}/commits`)
             .then(response => response.data)
-            .catch(erro => erro.response.data.message)
     }
 }
 

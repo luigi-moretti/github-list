@@ -28,7 +28,7 @@ function ListProfiles() {
                   <Link component={RouterLink} to={`/profiles/${ctx.listProfilesState.login}/repositories`} underline="none">
                           <ListItem alignItems="flex-start">
                             <ListItemAvatar>
-                              <Avatar alt={`${ctx.listProfilesState.name} avatar`} src={ctx.listProfilesState.url_avatar} />
+                              <Avatar alt={`${ctx.listProfilesState.name} avatar`} src={ctx.listProfilesState.avatar_url} />
                             </ListItemAvatar>
                             <ListItemText
                               primary={ctx.listProfilesState.name ? ctx.listProfilesState.name : ctx.listProfilesState.login}

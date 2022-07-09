@@ -4,6 +4,9 @@ export const context = createContext();
 
 export const ContextProvider = (props) => {
     const [listProfilesState, setListaProfilesState] = useState({});
+    const [listReposState, setListReposState] = useState([]);
+    const [listBranchState, setListBranchState] = useState([]);
+    const [listCommitsState, setListCommitsState] = useState([]);
     const [loading, setLoading] = useState(false);
     const [openAlert, setOpenAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState({})
@@ -17,7 +20,13 @@ export const ContextProvider = (props) => {
             alertMessage,
             setAlertMessage,
             openAlert,
-            setOpenAlert
+            setOpenAlert,
+            listReposState,
+            setListReposState,
+            listBranchState,
+            setListBranchState,
+            listCommitsState,
+            setListCommitsState
         }}>
             {props.children}
         </context.Provider>

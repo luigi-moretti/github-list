@@ -29,16 +29,16 @@ export default function ListBranches() {
               return (
                 <React.Fragment key={branch.name}>
                   <Link component={RouterLink} to={`${branch.name}/commits`} underline="none">
-                    <ListItem alignItems="flex-start">
-                      <ListItemAvatar>
-                        <DataObjectIcon />
-                      </ListItemAvatar>
-                      <ListItemText
-                        primary={branch.name}
-                      />
-                    </ListItem>
-                  </Link>
-                  <Divider variant="inset" component="li" />
+                          <ListItem alignItems="flex-start">
+                            <ListItemAvatar>
+                                <DataObjectIcon />
+                              </ListItemAvatar>
+                            <ListItemText
+                              primary={branch.name}
+                            />
+                          </ListItem>
+                        </Link>
+                      <Divider variant="inset" component="li" />
                 </React.Fragment>
               )
             })

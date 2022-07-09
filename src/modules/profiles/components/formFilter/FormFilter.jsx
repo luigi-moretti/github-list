@@ -20,16 +20,23 @@ function FormFilter() {
           const response = await ProfileRepository.getProfile(searchValue);
           ctx.setListaProfilesState(response);
           ctx.setLoading(false);
-        } catch {
+        } catch (erro) {
           ctx.setListaProfilesState({});
           ctx.setLoading(false);
+          console.log(erro)
+          ctx.setLoading(false);
+          ctx.setAlertMessage({
+            message: erro,
+            status: 'error'
+          });
+          ctx.setOpenAlert(true);
         }
     }
 
     return (
         <Box
             component="form"
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', justifyContent: 'center' , width: 400 }}
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', justifyContent: 'center' , width: 400, mb:5 }}
         >
             <TextField
                 label='Pesquisar perfil'
