@@ -1,9 +1,9 @@
 import Client from '../../../system/repository/clients/AxiosClient';
 
 const actions = {
-    getProfile(idProfile) {
+    getRepos(idProfile) {
         return Client
-            .get(`users/${idProfile}`)
+            .get(`/users/${idProfile}/repos`)
             .then(response => response.data)
     }
 }

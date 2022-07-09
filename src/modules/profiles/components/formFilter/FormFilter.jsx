@@ -17,8 +17,8 @@ function FormFilter() {
 
     async function getProfiles() {
         try {
-          const {data} = await ProfileRepository.getProfile(searchValue);
-          ctx.setListaProfilesState(data);
+          const response = await ProfileRepository.getProfile(searchValue);
+          ctx.setListaProfilesState(response);
           ctx.setLoading(false);
         } catch {
           ctx.setListaProfilesState({});

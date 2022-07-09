@@ -16,8 +16,6 @@ function ListProfiles() {
 
   const ctx = useContext(context);
 
-  // console.log(ctx);
-
   // https://api.github.com/users/defunkt
 
   return (
