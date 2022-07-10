@@ -25,8 +25,8 @@ export default function ListBranches() {
       <Typography variant="h6" align="center">De {idProfile} / {idRepository}</Typography>
       <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {
-          ctx.listBranchState.length > 0 ?
-            ctx.listBranchState.map(branch => {
+          ctx.listBranchComputedState.length > 0 ?
+            ctx.listBranchComputedState.map(branch => {
               return (
                 <React.Fragment key={branch.name}>
                   <Link component={RouterLink} to={`${branch.name}/commits`} underline="none">

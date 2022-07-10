@@ -4,9 +4,10 @@ import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import { Container, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
+import EmptyPackgeImage from '../../../../system/assets/images/empty_package.svg'
 
 import { context } from '../../../../system/context';
 
@@ -15,17 +16,14 @@ export default function ListCommits() {
   const ctx = useContext(context);
   const { idProfile, idRepository } = useParams();
 
-
-  // https://api.github.com/repos/defunkt/ace/commits
-
   return (
     <React.Fragment>
       <Typography variant="h5" align="center">Lista de Commits</Typography>
       <Typography variant="h6" align="center">De {idProfile} / {idRepository}</Typography>
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         {
-          ctx.listCommitsState.length > 0 ? 
-            ctx.listCommitsState.map(commit => {
+          ctx.listCommitsComputedState.length > 0 ? 
+            ctx.listCommitsComputedState.map(commit => {
               return (
                 <React.Fragment key={commit.sha}>
                       <ListItem alignItems="flex-start">
@@ -52,7 +50,20 @@ export default function ListCommits() {
                       <Divider variant="inset" component="li" />
                 </React.Fragment>
               )
-            }) : ''
+            })
+            :
+            <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <Typography variant="h6" style={{ marginTop: "25px" }}>Nenhum Commit encontrado</Typography>
+              <Container>
+                <img style={{
+                  display: "block",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginBottom: '15px',
+                  maxWidth: '100%'
+                }} alt="logotipo" src={EmptyPackgeImage} />
+              </Container>
+            </Container>
         }
       </List>
     </React.Fragment>

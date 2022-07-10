@@ -9,6 +9,7 @@ export const ContextProvider = (props) => {
     const [listBranchState, setListBranchState] = useState([]);
     const [listBranchComputedState, setListBranchComputedState] = useState([]);
     const [listCommitsState, setListCommitsState] = useState([]);
+    const [listCommitsComputedState, setListCommitsComputedState] = useState([]);
     const [loading, setLoading] = useState(false);
     const [openAlert, setOpenAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState({})
@@ -32,7 +33,9 @@ export const ContextProvider = (props) => {
             listRepoComputedState,
             setListRepoComputedState,
             listBranchComputedState,
-            setListBranchComputedState
+            setListBranchComputedState,
+            listCommitsComputedState,
+            setListCommitsComputedState
         }}>
             {props.children}
         </context.Provider>

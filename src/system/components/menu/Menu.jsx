@@ -1,10 +1,10 @@
-import { AppBar, Container, Toolbar, Box, Avatar, Alert, IconButton } from '@mui/material';
+import { AppBar, Container, Toolbar, Box, Avatar, Alert, IconButton, Link } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import HomeIcon from '@mui/icons-material/Home';
 import LinearProgress from '@mui/material/LinearProgress';
 import Fade from '@mui/material/Fade';
 import React ,{ useContext } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 
 import { context } from '../../context';
 
@@ -21,10 +21,11 @@ function MenuComponent() {
                         <IconButton onClick={() => navigate(-1)}>
                             <ArrowBackIcon />
                         </IconButton>
-                        <GitHubIcon />
-                        <Box>
-                            <Avatar alt='User' />
-                        </Box>
+                        <Link component={RouterLink} to='/' underline="none">
+                            <IconButton>
+                                <HomeIcon />
+                            </IconButton>
+                        </Link>
                     </Toolbar>
                 </Container>
                 <Fade in={ctx.loading}>
