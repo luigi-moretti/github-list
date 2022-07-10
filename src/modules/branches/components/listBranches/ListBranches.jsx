@@ -3,11 +3,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
+import { Container, Typography } from '@mui/material';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import Link from '@mui/material/Link';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import EmptyPackgeImage from '../../../../system/assets/images/empty_package.svg'
 
 import { context } from '../../../../system/context';
 
@@ -22,7 +23,7 @@ export default function ListBranches() {
     <React.Fragment>
       <Typography variant="h5" align="center">Lista de Branches</Typography>
       <Typography variant="h6" align="center">De {idProfile} / {idRepository}</Typography>
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {
           ctx.listBranchState.length > 0 ?
             ctx.listBranchState.map(branch => {
@@ -42,7 +43,19 @@ export default function ListBranches() {
                 </React.Fragment>
               )
             })
-            : ''
+            : 
+            <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <Typography variant="h6" style={{ marginTop: "25px" }}>Nenhum Branch encontrado</Typography>
+              <Container>
+                <img style={{
+                  display: "block",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginBottom: '15px',
+                  maxWidth: '100%'
+                }} alt="logotipo" src={EmptyPackgeImage} />
+              </Container>
+            </Container>
         }
       </List>
     </React.Fragment>

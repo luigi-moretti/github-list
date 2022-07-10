@@ -20,16 +20,12 @@ function RepositoriesPage() {
         ctx.setLoading(true);
 
         RepoRepository.getRepos(idProfile)
-            .then(function (response) {
+            .then(response => {
                 ctx.setListReposState(response);
                 ctx.setListRepoComputedState(response);
             })
-            .catch(function (erro) {
-                setisErro(erro);
-            })
-            .then(function () {
-                ctx.setLoading(false);
-            });
+            .catch( erro => setisErro(erro))
+            .then(() => ctx.setLoading(false));
     }
 
     function getComputedRepos(searchValue) {
