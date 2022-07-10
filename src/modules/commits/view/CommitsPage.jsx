@@ -2,10 +2,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 import { context } from '../../../system/context';
 import Repository from '../repository/RepositoryFactory';
-import { Container, Typography, Button } from '@mui/material';
+import BaseContainer from '../../../system/components/base/BaseContainer';
+import BaseTypography from '../../../system/components/base/BaseTypography';
+import BaseButton from '../../../system/components/base/BaseButton';
+import BaseLink from '../../../system/components/base/BaseLink';
 import FormFilter from '../components/formFilter/FormFilter';
 import ListCommits from '../components/listCommits/LisCommits';
-import Link from '@mui/material/Link';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SkeletonListItemBase from '../../../system/components/base/SkeletonListItemBase';
 import EmptyPackgeImage from '../../../system/assets/images/empty_package.svg';
@@ -47,7 +49,7 @@ function CommitsPage() {
     }, []);
 
     return (
-        <Container sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <BaseContainer sx={{ width: '100%', bgcolor: 'background.paper' }}>
 
             <FormFilter getComputedRepos={getComputedRepos} />
             {
@@ -55,9 +57,9 @@ function CommitsPage() {
                     Array.apply(0, Array(5)).map((elem, i) => <SkeletonListItemBase key={i} />)
                     :
                     isErro.code === 404 ?
-                        <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                            <Typography variant="h6" style={{ marginTop: "25px" }}>Nenhum Repositório encontrado</Typography>
-                            <Container>
+                        <BaseContainer sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                            <BaseTypography variant="h6" style={{ marginTop: "25px" }}>Nenhum Repositório encontrado</BaseTypography>
+                            <BaseContainer>
                                 <img style={{
                                     display: "block",
                                     marginLeft: "auto",
@@ -65,17 +67,17 @@ function CommitsPage() {
                                     marginBottom: '15px',
                                     maxWidth: '100%'
                                 }} alt="logotipo" src={EmptyPackgeImage} />
-                            </Container>
-                            <Link component={RouterLink} to='/' underline="none">
-                                <Button startIcon={<ArrowBackIcon />} variant="contained" >
+                            </BaseContainer>
+                            <BaseLink component={RouterLink} to='/' underline="none">
+                                <BaseButton startIcon={<ArrowBackIcon />} variant="contained" >
                                     Ir para Busca de Perfil
-                                </Button>
-                            </Link>
-                        </Container>
+                                </BaseButton>
+                            </BaseLink>
+                        </BaseContainer>
                         :
                         <ListCommits />
             }
-        </Container>
+        </BaseContainer>
     )
 }
 

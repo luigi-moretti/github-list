@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar, Box, Avatar, Alert, IconButton, Link } from '@mui/material';
+import { AppBar, Container, Toolbar, Alert, IconButton, Link } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HomeIcon from '@mui/icons-material/Home';
 import LinearProgress from '@mui/material/LinearProgress';

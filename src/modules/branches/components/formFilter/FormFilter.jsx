@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Box, TextField, IconButton } from '@mui/material';
+import BaseBox from '../../../../system/components/base/BaseBox';
+import BaseTextField from '../../../../system/components/base/BaseTextField';
+import BaseIconButton from '../../../../system/components/base/BaseIconButton';
 import SearchIcon from '@mui/icons-material/Search'
 
 import { context } from '../../../../system/context';
@@ -10,11 +12,11 @@ function FormFilter(props) {
     const [searchValue, setSearchValue] = useState('');  
 
     return (
-        <Box
+        <BaseBox
             component="form"
             sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', justifyContent: 'center' , mb:5 }}
         >
-            <TextField
+            <BaseTextField
                 label='Buscar branches'
                 variant='outlined'
                 value={searchValue}
@@ -24,13 +26,13 @@ function FormFilter(props) {
                 autoFocus
                 fullWidth
             />
-            <IconButton disabled={ctx.loading} type="submit" sx={{ p: '10px' }} aria-label="search" onClick={ (e) => {
+            <BaseIconButton disabled={ctx.loading} type="submit" sx={{ p: '10px' }} aria-label="search" onClick={ (e) => {
                 e.preventDefault();
                 props.getComputedBranches(searchValue)
               }}>
                   <SearchIcon />
-            </IconButton>
-        </Box>
+            </BaseIconButton>
+        </BaseBox>
     )
 }
 

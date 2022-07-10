@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import { Container, Typography } from '@mui/material';
+import BaseList from '../../../../system/components/base/BaseList';
+import BaseListItem from '../../../../system/components/base/BaseListItem';
+import BaseListItemText from '../../../../system/components/base/BaseListItemText';
+import BaseDivider from '../../../../system/components/base/BaseDivider';
+import BaseContainer from '../../../../system/components/base/BaseContainer';
+import BaseTypography from '../../../../system/components/base/BaseTypography';
 import { Link as RouterLink, useParams } from 'react-router-dom';
-import Link from '@mui/material/Link';
+import BaseLink from '../../../../system/components/base/BaseLink';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import EmptyPackgeImage from '../../../../system/assets/images/empty_package.svg'
@@ -21,32 +22,32 @@ export default function ListBranches() {
 
   return (
     <React.Fragment>
-      <Typography variant="h5" align="center">Lista de Branches</Typography>
-      <Typography variant="h6" align="center">De {idProfile} / {idRepository}</Typography>
-      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+      <BaseTypography variant="h5" align="center">Lista de Branches</BaseTypography>
+      <BaseTypography variant="h6" align="center">De {idProfile} / {idRepository}</BaseTypography>
+      <BaseList sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {
           ctx.listBranchComputedState.length > 0 ?
             ctx.listBranchComputedState.map(branch => {
               return (
                 <React.Fragment key={branch.name}>
-                  <Link component={RouterLink} to={`${branch.name}/commits`} underline="none">
-                    <ListItem alignItems="flex-start">
+                  <BaseLink component={RouterLink} to={`${branch.name}/commits`} underline="none">
+                    <BaseListItem alignItems="flex-start">
                       <ListItemAvatar>
                         <DataObjectIcon />
                       </ListItemAvatar>
-                      <ListItemText
+                      <BaseListItemText
                         primary={branch.name}
                       />
-                    </ListItem>
-                  </Link>
-                  <Divider variant="inset" component="li" />
+                    </BaseListItem>
+                  </BaseLink>
+                  <BaseDivider variant="inset" component="li" />
                 </React.Fragment>
               )
             })
             : 
-            <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-              <Typography variant="h6" style={{ marginTop: "25px" }}>Nenhum Branch encontrado</Typography>
-              <Container>
+            <BaseContainer sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <BaseTypography variant="h6" style={{ marginTop: "25px" }}>Nenhum Branch encontrado</BaseTypography>
+              <BaseContainer>
                 <img style={{
                   display: "block",
                   marginLeft: "auto",
@@ -54,10 +55,10 @@ export default function ListBranches() {
                   marginBottom: '15px',
                   maxWidth: '100%'
                 }} alt="logotipo" src={EmptyPackgeImage} />
-              </Container>
-            </Container>
+              </BaseContainer>
+            </BaseContainer>
         }
-      </List>
+      </BaseList>
     </React.Fragment>
   );
 }
