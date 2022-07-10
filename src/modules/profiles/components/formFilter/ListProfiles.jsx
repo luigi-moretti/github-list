@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import Container from '@mui/material/Container';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
+import BaseList from '../../../../system/components/base/BaseList';
+import BaseListItem from '../../../../system/components/base/BaseListItem';
+import BaseContainer from '../../../../system/components/base/BaseContainer';
+import BaseDivider from '../../../../system/components/base/BaseDivider';
+import BaseListItemText from '../../../../system/components/base/BaseListItemText';
+import BaseListItemAvatar from '../../../../system/components/base/BaseListItemAvatar';
+import BaseAvatar from '../../../../system/components/base/BaseAvatar';
+import BaseTypography from '../../../../system/components/base/BaseTypography';
 import SkeletonListItemBase from '../../../../system/components/base/SkeletonListItemBase';
+import BaseLink from '../../../../system/components/base/BaseLink';
 import { Link as RouterLink } from 'react-router-dom';
-import Link from '@mui/material/Link';
 import SearchImage from '../../.././../system/assets/images/search.svg';
 
 import { context } from '../../../../system/context';
@@ -21,42 +21,42 @@ function ListProfiles() {
 
   return (
     <React.Fragment>
-      <Typography variant="h5" align="center">Perfis</Typography>
-      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+      <BaseTypography variant="h5" align="center">Perfis</BaseTypography>
+      <BaseList sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {
           ctx.loading ?
             <SkeletonListItemBase />
             : Object.keys(ctx.listProfilesState).length > 0 ?
               <React.Fragment key={ctx.listProfilesState.login}>
-                <Link component={RouterLink} to={`/profiles/${ctx.listProfilesState.login}/repositories`} underline="none">
-                  <ListItem alignItems="flex-start">
-                    <ListItemAvatar>
-                      <Avatar alt={`${ctx.listProfilesState.name} avatar`} src={ctx.listProfilesState.avatar_url} />
-                    </ListItemAvatar>
-                    <ListItemText
+                <BaseLink component={RouterLink} to={`/profiles/${ctx.listProfilesState.login}/repositories`} underline="none">
+                  <BaseListItem alignItems="flex-start">
+                    <BaseListItemAvatar>
+                      <BaseAvatar alt={`${ctx.listProfilesState.name} avatar`} src={ctx.listProfilesState.avatar_url} />
+                    </BaseListItemAvatar>
+                    <BaseListItemText
                       primary={ctx.listProfilesState.name ? ctx.listProfilesState.name : ctx.listProfilesState.login}
                       secondary={
                         <React.Fragment>
-                          <Typography
+                          <BaseTypography
                             sx={{ display: 'inline' }}
                             component="span"
                             variant="body2"
                             color="text.primary"
                           >
                             Login: {ctx.listProfilesState.login}
-                          </Typography>
+                          </BaseTypography>
                           {ctx.listProfilesState.public_repos ? ` — ${ctx.listProfilesState.public_repos} Repositórios públicos` : ''}
                         </React.Fragment>
                       }
                     />
-                  </ListItem>
-                </Link>
-                <Divider variant="inset" component="li" />
+                  </BaseListItem>
+                </BaseLink>
+                <BaseDivider variant="inset" component="li" />
               </React.Fragment>
               :
-              <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant="h6" style={{ marginTop: "25px" }}>Digite um Login para pesquisar</Typography>
-                <Container>
+              <BaseContainer sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <BaseTypography variant="h6" style={{ marginTop: "25px" }}>Digite um Login para pesquisar</BaseTypography>
+                <BaseContainer>
                   <img style={{
                     display: "block",
                     marginLeft: "auto",
@@ -64,11 +64,11 @@ function ListProfiles() {
                     marginBottom: '15px',
                     maxWidth: '100%'
                   }} alt="logotipo" src={SearchImage} />
-                </Container>
-              </Container>
+                </BaseContainer>
+              </BaseContainer>
         }
 
-      </List>
+      </BaseList>
     </React.Fragment>
   );
 }

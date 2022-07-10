@@ -1,34 +1,34 @@
 import React from 'react';
-import Skeleton from '@mui/material/Skeleton';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Typography from '@mui/material/Typography';
+import BaseSkeleton from './BaseSkeleton';
+import BaseListItem from './BaseListItem';
+import BaseListItemText from './BaseListItemText';
+import BaseListItemAvatar from './BaseListItemAvatar';
+import BaseTypography from './BaseTypography';
 
 
 function SkeletonListItemBase() {
     return (
-        <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-                <Skeleton variant="circular" width={40} height={40} />
-            </ListItemAvatar>
-            <ListItemText
-                primary={<Skeleton variant="text" />}
+        <BaseListItem alignItems="flex-start">
+            <BaseListItemAvatar>
+                <BaseSkeleton variant="circular" width={40} height={40} />
+            </BaseListItemAvatar>
+            <BaseListItemText
+                primary={<BaseSkeleton variant="text" />}
                 secondary={
                     <>
-                        <Typography
+                        <BaseTypography
                             sx={{ display: 'inline' }}
                             component="span"
                             variant="body2"
                             color="text.primary"
                         >
-                            <Skeleton variant="text" />
-                        </Typography>
-                        <Skeleton variant="text" />
+                            <BaseSkeleton variant="text" />
+                        </BaseTypography>
+                        <BaseSkeleton variant="text" />
                     </>
                 }
             />
-        </ListItem>
+        </BaseListItem>
     )
 }
 

@@ -1,4 +1,7 @@
-import { Box, TextField, InputAdornment, IconButton } from '@mui/material';
+import BaseBox from '../../../../system/components/base/BaseBox';
+import BaseTextField from '../../../../system/components/base/BaseTextField';
+import BaseInputAdornment from '../../../../system/components/base/BaseInputAdornment';
+import BaseIconButton from '../../../../system/components/base/BaseIconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import SearchIcon from '@mui/icons-material/Search'
 import React, { useState, useContext } from 'react';
@@ -11,11 +14,11 @@ function FormFilter(props) {
     const ctx = useContext(context);
 
     return (
-        <Box
+        <BaseBox
             component="form"
             sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', justifyContent: 'center' , mb:5 }}
         >
-            <TextField
+            <BaseTextField
                 label='Pesquisar perfil'
                 variant='outlined'
                 value={searchValue}
@@ -25,21 +28,21 @@ function FormFilter(props) {
                 autoFocus
                 InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <BaseInputAdornment position="start">
                         <AccountCircle />
-                      </InputAdornment>
+                      </BaseInputAdornment>
                     ),
                   }}
                 fullWidth
             />
-            <IconButton disabled={ctx.loading} type="submit" sx={{ p: '10px' }} aria-label="search" onClick={ (e) => {
+            <BaseIconButton disabled={ctx.loading} type="submit" sx={{ p: '10px' }} aria-label="search" onClick={ (e) => {
                 e.preventDefault();
                 ctx.setLoading(true);
                 props.getProfiles(searchValue)
               }}>
                   <SearchIcon />
-            </IconButton>
-        </Box>
+            </BaseIconButton>
+        </BaseBox>
     )
 }
 

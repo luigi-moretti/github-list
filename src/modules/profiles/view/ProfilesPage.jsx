@@ -1,5 +1,6 @@
-import { Typography, Container } from '@mui/material';
 import React, { useState, useContext } from 'react';
+import BaseContainer from '../../../system/components/base/BaseContainer';
+import BaseTypography from '../../../system/components/base/BaseTypography';
 import FormFilter from '../components/formFilter/FormFilter';
 import ListProfiles from '../components/formFilter/ListProfiles';
 import { context } from '../../../system/context';
@@ -30,16 +31,16 @@ function ProfilesPage() {
 
 
     return (
-        <Container sx={{ width: '100%', bgcolor: 'background.paper' }}>
-            <Typography variant='h3' sx={{ mb: 5 }}>
+        <BaseContainer sx={{ width: '100%', bgcolor: 'background.paper' }}>
+            <BaseTypography variant='h3' sx={{ mb: 5 }}>
                 Busque um perfil
-            </Typography>
+            </BaseTypography>
             <FormFilter getProfiles={getProfiles} />
             {
                 isErro.code === 404 ?
-                    <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                        <Typography variant="h6" style={{ marginTop: "25px" }}>Nenhum Perfil encontrado</Typography>
-                        <Container>
+                    <BaseContainer sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <BaseTypography variant="h6" style={{ marginTop: "25px" }}>Nenhum Perfil encontrado</BaseTypography>
+                        <BaseContainer>
                             <img style={{
                                 display: "block",
                                 marginLeft: "auto",
@@ -47,12 +48,12 @@ function ProfilesPage() {
                                 marginBottom: '15px',
                                 maxWidth: '100%'
                             }} alt="logotipo" src={ProfileSearchImage} />
-                        </Container>
-                    </Container>
+                        </BaseContainer>
+                    </BaseContainer>
                     :
                     <ListProfiles />
             }
-        </Container>
+        </BaseContainer>
     )
 }
 
