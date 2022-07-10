@@ -1,10 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link as RouterLink  } from 'react-router-dom';
 import ListRepositories from '../components/listRepositries/ListRepositories'
 import FormFilter from '../components/formFilter/FormFilter'
 import { context } from '../../../system/context';
 import Repository from '../repository/RepositoryFactory';
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Button } from '@mui/material';
+import Link from '@mui/material/Link';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SkeletonListItemBase from '../../../system/components/base/SkeletonListItemBase';
 import EmptyPackgeImage from '../../../system/assets/images/empty_package.svg'
 
@@ -33,12 +35,12 @@ function RepositoriesPage() {
     function getComputedRepos(searchValue) {
         ctx.setLoading(true);
         if (searchValue !== '') {
-            const computedRepos = ctx.setListReposState.filter(repo => {
+            const computedRepos = ctx.listReposState.filter(repo => {
                 return repo.name.toLocaleLowerCase().indexOf(searchValue.toLocaleLowerCase()) !== -1;
             });
-            ctx.listRepoComputedState(computedRepos);
+            ctx.setListRepoComputedState(computedRepos);
         } else {
-            ctx.listRepoComputedState(ctx.listReposState);
+            ctx.setListRepoComputedState(ctx.listReposState);
         }
         ctx.setLoading(false);
     }
@@ -53,11 +55,11 @@ function RepositoriesPage() {
             <FormFilter getComputedRepos={getComputedRepos} />
             {
                 ctx.loading ?
-                    Array.apply(0,Array(5)).map( (elem, i) => <SkeletonListItemBase key={i} />)
+                    Array.apply(0, Array(5)).map((elem, i) => <SkeletonListItemBase key={i} />)
                     :
                     isErro.code === 404 ?
                         <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                            <Typography variant="h6" style={{ marginTop: "25px" }}>Nenhum Perfil encontrado</Typography>
+                            <Typography variant="h6" style={{ marginTop: "25px" }}>Nenhum Repositório encontrado</Typography>
                             <Container>
                                 <img style={{
                                     display: "block",
@@ -67,6 +69,11 @@ function RepositoriesPage() {
                                     maxWidth: '100%'
                                 }} alt="logotipo" src={EmptyPackgeImage} />
                             </Container>
+                            <Link component={RouterLink} to='/' underline="none">
+                                <Button startIcon={<ArrowBackIcon />} variant="contained" >
+                                    Ir para Busca de Perfil
+                                </Button>
+                            </Link>
                         </Container>
                         :
                         <ListRepositories />

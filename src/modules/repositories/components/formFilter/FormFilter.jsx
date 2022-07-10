@@ -26,7 +26,6 @@ function FormFilter(props) {
             />
             <IconButton disabled={ctx.loading} type="submit" sx={{ p: '10px' }} aria-label="search" onClick={ (e) => {
                 e.preventDefault();
-                ctx.setLoading(true);
                 props.getComputedRepos(searchValue)
               }}>
                   <SearchIcon />
