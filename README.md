@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Iniciando o projeto
+Este projeto foi construído em React com [Create React App](https://github.com/facebook/create-react-app).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Comandos importantes
+### Instalação
+Para instalar as dependências do projeto é necessário baixá-los localmente e executar o seguinte comando:
 
-## Available Scripts
+`npm install`
 
-In the project directory, you can run:
+### Execução
+Para iniciar o projeto em modo de desenvolvimento é necessário rodar o seguinte comando
 
-### `npm start`
+`npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Com isso o projeto estará executando no seguinte endereço: [http://localhost:3000](http://localhost:3000)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Build
+Para preparar o projeto para o ambiente de produção é necessário executar o seguinte comando:
 
-### `npm test`
+`npm run build`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Detalhes do projeto
+## Motivo da existência
+Este projeto nasceu da necessidade de testar meus conhecimentos em Front-end.
 
-### `npm run build`
+## Arquitetura
+No momento do desenvolvimento deste projeto, possuo maior conhecimento em [Vue.js](https://vuejs.org/), entretanto quis relembrar e aprimorar minhas habilidades em [ReactJS](https://pt-br.reactjs.org/).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Em minhas pesquisas por arquitetura no front-end, encontrei o seguinte artigo [Vue.js, Clean Architecture e Package by feature Pattern ](https://dev.to/booscaaa/vuejs-clean-architecture-e-package-by-feature-pattern-56lb). Foi baseado neste artigo que trouxe um pouco da estrtura de pastas deste projeto.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+O motivo principal era testar uma arquitetura modular. Neste primeiro momento não estou utilizando TypeScript, por conta de tempo de entrega do projeto.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Estrutura de pastas
+### /System
+A pasta `/system` contém os arquivos utilizados por todo o sistema, por conta disso dentro dela é possível encontrar as seguintes pastas:
 
-### `npm run eject`
+- `/assets`: contém arquivos como imagens, css, etc;
+- `/repository`: contém os clients que a aplicação poderá utilizar. Desta forma tornamos escalável a aplicação para diversos clients. Neste momento estou utilizando o [Axios](https://axios-http.com/ptbr/docs/intro), mas por conta dessa estrutura é fácil trocá-lo e/ou adicionar novos sem afetar o restante da aplicação;
+- `/context`: responsável pelo estado da aplicação;
+- `/components`: responsável pelos componentes globais e base da aplicação. Neste caso estamos utilizando o [Material UI](https://mui.com/). Os componentes base da aplicação envolvem os componentes nativos do [Material UI](https://mui.com/), pois desta maneira ficaria relativamente simples realizar a troca de compoententes da aplicação sem a necessidade de trocar em todas as telas.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### /Modules
+A pasta `/modules` contém os módulos da aplicação, neste caso, cada módulo representa uma página.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Os módulos são independentes de forma que cada um deles tem seus próprios componentes (`/components`), regras de negócio (`/domain` ~~ainda não implementado~~), camada de persistência (`/repository`) e camada de visualização/página (`/view`).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+O fato de cada módulo ser independente possibilita a manutenção individual de cada um deles sem que interfiram uns nos outros.
