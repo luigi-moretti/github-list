@@ -4,39 +4,16 @@ import SearchIcon from '@mui/icons-material/Search'
 import React, { useState, useContext } from 'react';
 
 import { context } from '../../../../system/context';
-import Repository from '../../repository/RepositoryFactory';
 
-
-
-function FormFilter() {
+function FormFilter(props) {
 
     const [searchValue, setSearchValue] = useState('');
     const ctx = useContext(context);
 
-    const ProfileRepository = Repository.get('profiles');
-
-    async function getProfiles() {
-        try {
-          const response = await ProfileRepository.getProfile(searchValue);
-          ctx.setListaProfilesState(response);
-          ctx.setLoading(false);
-        } catch (erro) {
-          ctx.setListaProfilesState({});
-          ctx.setLoading(false);
-          console.log(erro)
-          ctx.setLoading(false);
-          ctx.setAlertMessage({
-            message: erro,
-            status: 'error'
-          });
-          ctx.setOpenAlert(true);
-        }
-    }
-
     return (
         <Box
             component="form"
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', justifyContent: 'center' , width: 400, mb:5 }}
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', justifyContent: 'center' , mb:5 }}
         >
             <TextField
                 label='Pesquisar perfil'
@@ -58,7 +35,7 @@ function FormFilter() {
             <IconButton disabled={ctx.loading} type="submit" sx={{ p: '10px' }} aria-label="search" onClick={ (e) => {
                 e.preventDefault();
                 ctx.setLoading(true);
-                getProfiles()
+                props.getProfiles(searchValue)
               }}>
                   <SearchIcon />
             </IconButton>

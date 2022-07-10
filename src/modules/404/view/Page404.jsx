@@ -3,7 +3,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@mui/material/Link';
 import HomeIcon from '@mui/icons-material/Home';
-import Imagem from '../../../system/assets/404.svg'
+import Imagem from '../../../system/assets/images/404.svg'
 
 function Pagina404() {
     return (
