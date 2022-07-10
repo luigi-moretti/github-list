@@ -5,6 +5,7 @@ export const context = createContext();
 export const ContextProvider = (props) => {
     const [listProfilesState, setListaProfilesState] = useState({});
     const [listReposState, setListReposState] = useState([]);
+    const [listRepoComputedState, setListRepoComputedState] = useState([]);
     const [listBranchState, setListBranchState] = useState([]);
     const [listCommitsState, setListCommitsState] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -26,7 +27,9 @@ export const ContextProvider = (props) => {
             listBranchState,
             setListBranchState,
             listCommitsState,
-            setListCommitsState
+            setListCommitsState,
+            listRepoComputedState,
+            setListRepoComputedState
         }}>
             {props.children}
         </context.Provider>

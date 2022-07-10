@@ -16,16 +16,14 @@ export default function ListRepositories() {
   const ctx = useContext(context);
   const { idProfile } = useParams();
 
-  // https://api.github.com/users/defunkt/repos
-
   return (
     <React.Fragment>
       <Typography variant="h5" align="center">Lista de Repositórios</Typography>
       <Typography variant="h6" align="center">De {idProfile}</Typography>
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {
-          ctx.listReposState.length > 0 ?
-            ctx.listReposState.map(repository => {
+          ctx.listRepoComputedState.length > 0 ?
+            ctx.listRepoComputedState.map(repository => {
               return (
                 <React.Fragment key={repository.full_name}>
                   <Link component={RouterLink} to={`${repository.name}/branches/`} underline="none">

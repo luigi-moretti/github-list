@@ -18,11 +18,12 @@ function ProfilesPage() {
         ProfileRepository.getProfile(searchValue)
             .then(function (response) {
                 ctx.setListaProfilesState(response);
-                ctx.setLoading(false);
                 setisErro({});
             })
             .catch(function (erro) {
                 setisErro(erro);
+            })
+            .then(function () {
                 ctx.setLoading(false);
             });
     }
